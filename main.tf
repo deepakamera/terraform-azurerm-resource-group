@@ -1,18 +1,8 @@
-locals {
-  resource_group_name = "${var.names.resource_group_type}-${var.names.product_name}-${var.names.environment}-${var.names.location}"
-
-  unique_name = var.unique_name == "true" ? random_integer.suffix[0].result : (var.unique_name == "false" ? null : var.unique_name)
-}
-
-resource "random_integer" "suffix" {
-  count = var.unique_name == "true" ? 1 : 0
-
-  min = 10000
-  max = 99999
+resource "random_pet" "rg-name" {
+  prefix    = var.resource_group_name_prefix
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = local.unique_name != null ? "${local.resource_group_name}-${local.unique_name}" : local.resource_group_name
-  location = var.location
-  tags     = var.tags
+  name      = random_pet.rg-name.id
+  location  = var.resource_group_location
 }
