@@ -10,9 +10,12 @@ terraform {
   }
 }
 
-#Creating a resource group
-resource "azurerm_resource_group""my"
-{
-  name="test-rg"
-  location="eastus"
+provider "azurerm" {
+  features {}
+}
+
+
+resource "azurerm_resource_group" "rg" {
+  name      = "test-rg"
+  location  = "eastus"
 }
