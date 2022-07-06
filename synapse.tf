@@ -14,8 +14,8 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_synapse_workspace" "example" {
-  name                                 = "test-synapse"
+resource "azurerm_synapse_workspace" "examplesynapse" {
+  name                                 = "test-synapsetest"
   resource_group_name                  = "test-rg"
   location                             = "eastus"
   }
